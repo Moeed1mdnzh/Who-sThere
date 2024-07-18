@@ -14,6 +14,11 @@ class FaceDetector:
     def _detect(self, im):
         return self.mtcnn.detect(im)
     
+    def extract(self, im):
+        im = self._utilize(im)
+        crop = self.mtcnn(im)
+        return self.model(crop)
+    
     def search(self, im):
         im_modified = self._utilize(im)
         res = self._detect(im_modified)
